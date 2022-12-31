@@ -3,7 +3,7 @@ const cors = require('cors')
 require('express-async-errors');
 require('dotenv').config();
 
-const CustomerRoute = require('./routes/customerRoute');
+const customerRoute = require('./routes/customerRoute');
 const orderRoute = require('./routes/orderRoute');
 const productRoute = require('./routes/productRoute');
 
@@ -17,11 +17,11 @@ app.use(cors());
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
-app.use('/api/customers', CustomerRoute);
-app.use('/api/orders', OrderRoute);
-app.use('/api/products', ProductRoute);
+app.use('/api/customers', customerRoute);
+app.use('/api/orders', orderRoute);
+app.use('/api/products', productRoute);
 
 app.use(notFoundRouteMiddleware);
 app.use(errorHandlerMiddleware);
 
-app.listen(Port, console.log(`App is listening on ${port}...`));
+app.listen(Port, console.log(`App is listening on ${Port}...`));

@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const { StatusCodes } = require("http-status-codes");
+const NotFoundError = require("../errors/notFoundError");
 
 const prisma = new PrismaClient();
 
@@ -81,5 +82,5 @@ module.exports = {
   deleteProduct,
   editProduct,
   getAllProducts,
-  getProductById
+  getProductById,
 };

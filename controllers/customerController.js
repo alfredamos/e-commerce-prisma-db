@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const { StatusCodes } = require("http-status-codes");
+const NotFoundError = require('../errors/notFoundError');
 
 const prisma = new PrismaClient();
 
@@ -9,6 +10,8 @@ const createCustomer = async (req, res) => {
   const customer = await prisma.customer.create({
     data: { ...newCustomer },
   });
+
+  console.log("in controller, customer", customer);
 
   res.status(StatusCodes.CREATED).json(customer);
 };
@@ -30,6 +33,7 @@ const deleteCustomer = async (req, res) => {
 
   res.status(StatusCodes.OK).json(deletedCustomer);
 };
+
 const editCustomer = async (req, res) => {
   const { id } = req.params;
   const { body: customerToUpdate } = req;
@@ -81,5 +85,5 @@ module.exports = {
   deleteCustomer,
   editCustomer,
   getAllCustomers,
-  getCustomerById
+  getCustomerById,
 };
